@@ -30,17 +30,28 @@ price_input = QLineEdit()
 layout.addRow("قیمت محصول", price_input)
 stock_input = QLineEdit()
 layout.addRow("مقدار محصول", stock_input)
+
 button = QPushButton("ثبت محصول")
 layout.addRow(button)
 
+
 def push_button():
+    try:
+            
+        product = {
+            "code": code_input.text(),
+            "name": name_input.text(),
+            "price": price_input.text(),
+            "stock": stock_input.text()
+        }
+    except ValueError:
+        print("باید عدد وارد کنید")
     if name_input.text() == "":
         print("is not none define")
     else:
-        print(code_input.text())
-        print(name_input.text())
-        print(price_input.text())
-        print(stock_input.text())
+            for i in product.values():
+                print(i)
+        
 button.clicked.connect(push_button)    
 windows.show()
 sys.exit(app.exec())
