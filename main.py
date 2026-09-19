@@ -34,23 +34,30 @@ layout.addRow("مقدار محصول", stock_input)
 button = QPushButton("ثبت محصول")
 layout.addRow(button)
 
-
+products = []
 def push_button():
     try:
-            
-        product = {
-            "code": code_input.text(),
-            "name": name_input.text(),
-            "price": price_input.text(),
-            "stock": stock_input.text()
-        }
+        code = code_input.text()
+        name = name_input.text()
+        price = int(price_input.text())
+        stock = int(stock_input.text())
     except ValueError:
-        print("باید عدد وارد کنید")
-    if name_input.text() == "":
-        print("is not none define")
-    else:
-            for i in product.values():
-                print(i)
+        print("باید عدد وارد کنید")    
+        return
+    product = {
+        "code": code,
+        "name": name,
+        "price": price,
+        "stock": stock
+    }
+    if name == "":
+            print("نام محصول را وارد کنید")
+            return
+    products.append(product)
+    
+    
+    for product in products:
+        print(product)
         
 button.clicked.connect(push_button)    
 windows.show()
