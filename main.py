@@ -38,6 +38,7 @@ layout.addRow("مقدار محصول", stock_input)
 
 button = QPushButton("ثبت محصول")
 layout.addRow(button)
+layout.addRow(table)
 
 products = []
 def ClearInput():
@@ -70,24 +71,24 @@ def push_button():
     
     ClearInput()
     
-    for product in products:
-        print(product)
+    
+
+    table.setColumnCount(4)
+    table.setRowCount(len(products))
+    table.setHorizontalHeaderLabels([
+        "کد",
+        "نام محصول",
+        "قیمت",
+        "موجودی"
+    ])
+    for index, product in enumerate(products):
+        table.setItem(index,0,QTableWidgetItem(product["code"]))
+        table.setItem(index,1,QTableWidgetItem(product["name"]))
+        table.setItem(index,2,QTableWidgetItem(str(product["price"])))
+        table.setItem(index,3,QTableWidgetItem(str(product["stock"])))
 button.clicked.connect(push_button)
 
-layout.addRow(table)
-table.setRowCount(3)
-table.setColumnCount(4)
 
-table.setHorizontalHeaderLabels([
-    "کد",
-    "نام محصول",
-    "قیمت",
-    "موجودی"
-])
-table.setItem(0,0,QTableWidgetItem("110"))
-table.setItem(0,1,QTableWidgetItem("pipe 110"))
-table.setItem(0,2,QTableWidgetItem("100000"))
-table.setItem(0,3,QTableWidgetItem("1"))
 
 
 
